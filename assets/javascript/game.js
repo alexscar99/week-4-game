@@ -4,9 +4,9 @@ $(document).ready(function() {
 
   $('#random-number').text(randomNumber);
 
-  wins = 0;
+  var wins = 0;
 
-  losses = 0;
+  var losses = 0;
 
   // create paragraphs for wins and losses
   $('#player-record').html(
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
   var crystals = $('#crystals');
 
-  score = 0;
+  var score = 0;
 
   $('#current-score').text(score);
 
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
       wins += 1;
 
-      // reset score and new random number between 19-120
+      // reset score to 0 and new random number between 19-120
       randomNumber = Math.floor(Math.random() * 102) + 19;
 
       score = 0;
@@ -102,7 +102,7 @@ $(document).ready(function() {
 
       losses += 1;
 
-      // reset score and new random number between 19-120
+      // reset score to 0 and new random number between 19-120
       score = 0;
 
       randomNumber = Math.floor(Math.random() * 102) + 19;

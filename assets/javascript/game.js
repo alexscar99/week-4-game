@@ -1,77 +1,138 @@
-// create random number between 19-120
-var randomNumber = Math.floor(Math.random() * 102) + 19;
+$(document).ready(function() {
+  // store random number between 19-120
+  var randomNumber = Math.floor(Math.random() * 102) + 19;
 
-// add the random number to the div with id random number
-$('#random-number').text(randomNumber);
+  $('#random-number').text(randomNumber);
 
-// set variable to crystals div
-var crystals = $('#crystals');
+  wins = 0;
 
-// start off with score at 0
-var score = 0;
+  losses = 0;
 
-// empty array to store crystal values
-var crystalScores = [];
+  // create paragraphs for wins and losses
+  $('#player-record').html(
+    '<p>Wins: ' + wins + '</p>' + '<br>' + '<p>Losses: ' + losses + '</p>'
+  );
 
-// create loop to generate a random number between 1-12, do it 4 times, and add to empty array
-for (i = 0; i < 4; i++) {
-  // push in random number
-  crystalScores.push(Math.floor(Math.random() * 12) + 1);
-}
+  var crystals = $('#crystals');
 
-var crystalImgSrc = [
-  'assets/images/crystal1.jpg',
-  'assets/images/crystal2.jpg',
-  'assets/images/crystal3.jpeg',
-  'assets/images/crystal4.png'
-];
+  score = 0;
 
-// loop through and create crystal with score from each element of the score array
-for (var i = 0; i < crystalScores.length; i++) {
-  var crystalImage = $('<img>');
+  $('#current-score').text(score);
 
-  crystalImage.addClass('crystal-img');
+  var crystalScores = [];
 
-  // create function to add img src
-  // var addCrystalImage = function(imgSrc) {
-  //   crystalImage.attr('src', imgSrc);
-  // };
-  crystalImage.attr('src', crystalImgSrc[i]);
-
-  crystalImage.attr('data-crystal-value', crystalScores[i]);
-
-  crystalImage.attr('alt', 'crystal image');
-
-  crystals.append(crystalImage);
-}
-
-// call function 4 times for each crystal to add the different img
-// addCrystalImage('assets/images/crystal1.jpg');
-
-// addCrystalImage('assets/images/crystal2.jpg');
-
-// addCrystalImage('assets/images/crystal3.jpeg');
-
-// addCrystalImage('assets/images/crystal4.png');
-
-// when any crystal is clicked:
-crystals.on('click', '.crystal-img', function() {
-  // store the data crystal value string
-  var crystalValue = $(this).attr('data-crystal-value');
-
-  // turn the string into a number for the score
-  crystalValue = parseInt(crystalValue);
-
-  // increment score by the value of the specific crystal
-  score += crystalValue;
-
-  // tell the user what their new score is
-  alert('Your new score is ' + score);
-
-  // conditional to alert the user for win and loss
-  if (score === randomNumber) {
-    alert('Congratulations! You have won the game!');
-  } else if (score > randomNumber) {
-    alert('You have lost the game.');
+  // create loop to add 4 random numbers between 1-12 to empty array
+  for (i = 0; i < 4; i++) {
+    crystalScores.push(Math.floor(Math.random() * 12) + 1);
   }
+
+  // create array of the four crystal images
+  var crystalImgSrc = [
+    'assets/images/crystal1.jpg',
+    'assets/images/crystal2.jpg',
+    'assets/images/crystal3.jpeg',
+    'assets/images/crystal4.png'
+  ];
+
+  // loop through and create 4 imgs with same class, src from img src array defined above, add data-crystal-value attr that takes the value of the random score number from the crystal scores array, add alt tag to all imgs, and append to the element with id of crystals
+  for (var i = 0; i < crystalScores.length; i++) {
+    var crystalImage = $('<img>');
+
+    crystalImage.addClass('crystal-img');
+
+    crystalImage.attr('src', crystalImgSrc[i]);
+
+    crystalImage.attr('data-crystal-value', crystalScores[i]);
+
+    crystalImage.attr('alt', 'crystal image');
+
+    crystals.append(crystalImage);
+  }
+
+  crystals.on('click', '.crystal-img', function() {
+    // store the data crystal value string
+    var crystalValue = $(this).attr('data-crystal-value');
+
+    // turn the string into a number for the score
+    crystalValue = parseInt(crystalValue);
+
+    score += crystalValue;
+
+    $('#current-score').text(score);
+
+    // set conditional for if the user wins or losses
+    if (score === randomNumber) {
+      alert('Congratulations! You won the game!');
+
+      wins += 1;
+
+      // reset score and new random number between 19-120
+      randomNumber = Math.floor(Math.random() * 102) + 19;
+
+      score = 0;
+
+      $('#random-number').text(randomNumber);
+
+      $('#current-score').text(score);
+
+      $('#player-record').html(
+        '<p>You won!!!</p>' +
+          '<p>Wins: ' +
+          wins +
+          '</p>' +
+          '<br>' +
+          '<p>Losses: ' +
+          losses +
+          '</p>'
+      );
+
+      // reset crystal scores with 4 new random numbers between 1-12
+      crystalScores = [];
+
+      for (var i = 0; i < 4; i++) {
+        crystalScores.push(Math.floor(Math.random() * 12) + 1);
+      }
+
+      // for loop was replacing last value of crystal scores array into all 4 instead of setting each one. Had to use a .each function and `this` to populate it properly
+      $('.crystal-img').each(function(i) {
+        $(this).attr('data-crystal-value', crystalScores[i]);
+      });
+    } else if (score > randomNumber) {
+      alert('You lost the game!');
+
+      losses += 1;
+
+      // reset score and new random number between 19-120
+      score = 0;
+
+      randomNumber = Math.floor(Math.random() * 102) + 19;
+
+      $('#random-number').text(randomNumber);
+
+      $('#current-score').text(score);
+
+      $('#player-record').html(
+        '<p>You lost!</p>' +
+          '<p>Wins: ' +
+          wins +
+          '</p>' +
+          '<br>' +
+          '<p>Losses: ' +
+          losses +
+          '</p>'
+      );
+
+      // reset crystal scores with 4 new random numbers between 1-12
+      crystalScores = [];
+
+      for (i = 0; i < 4; i++) {
+        crystalScores.push(Math.floor(Math.random() * 12) + 1);
+      }
+
+      // for loop was replacing last value of crystal scores array into all 4 instead of setting each one. Had to use a .each function and `this` to populate it properly
+      $('.crystal-img').each(function(i) {
+        $(this).attr('data-crystal-value', crystalScores[i]);
+      });
+    }
+  });
 });

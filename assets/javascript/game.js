@@ -1,7 +1,9 @@
+var randomNumber = Math.floor(Math.random() * 102) + 19;
+
 var counter = 0;
 
 $('#crystals').on('click', '.crystal-img', function() {
-  counter += 1;
+  counter += 10;
 
-  alert('You clicked this crystal ' + counter + ' times!');
+  alert('Your new score is ' + counter + '.');
 });

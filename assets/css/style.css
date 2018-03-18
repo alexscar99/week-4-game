@@ -45,7 +45,7 @@ h3 {
 #current-score {
   font-size: 18px;
   height: 80px;
-  width: 150px;
+  width: 12%;
   padding: 30px;
   margin: 45px 100px 0px 100px;
   text-align: center;
@@ -59,6 +59,7 @@ h3 {
 #random-number p {
   margin-top: -5px;
   font-size: 80px;
+  margin-right: 10px;
 }
 
 #player-record {

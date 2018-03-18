@@ -1,4 +1,91 @@
+body {
+  background-image: url(../images/cave-background.jpg);
+  color: white;
+  margin: 60px;
+  padding: 0 25px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: #d1c9c8;
+  font-size: 60px;
+  text-align: center;
+  text-shadow: 3px -1px 8px #e0dad9;
+  margin-top: -35px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-top: -10px;
+}
+
+h3 {
+  font-size: 55px;
+  margin-top: -10px;
+}
+
+#instructions,
+#random-number,
+#player-record,
+#current-score {
+  border: 4px solid white;
+}
+
+#instructions {
+  background: #282d2a;
+  font-size: 20px;
+  line-height: 17px;
+  padding: 18px;
+  height: 200px;
+}
+
+#random-number,
+#player-record,
+#current-score {
+  font-size: 18px;
+  height: 80px;
+  width: 150px;
+  padding: 30px;
+  margin: 45px 100px 0px 100px;
+  text-align: center;
+  float: left;
+}
+
+#random-number {
+  background: #9ca39f;
+}
+
+#random-number p {
+  margin-top: -5px;
+  font-size: 80px;
+}
+
+#player-record {
+  background: #4d5650;
+}
+
+#player-record p {
+  margin: 10px auto 25px auto;
+}
+
+#player-record p.player-record-end-game {
+  margin: -5px auto 20px auto;
+}
+
+#crystals {
+  float: left;
+}
+
 .crystal-img {
-  height: 180px;
-  width: 180px;
+  clear: both;
+  height: 100px;
+  width: 100px;
+  background: black;
+  margin: 45px 75px 25px 120px;
+  border: 4px solid #747c78;
+}
+
+#current-score {
+  background: #747c78;
 }

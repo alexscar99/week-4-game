@@ -78,14 +78,18 @@ $(document).ready(function() {
 
     $('#score').text(score);
 
+    if (score === randomNumber || score > randomNumber) {
+      crystalValue = 0;
+    }
+
     // set conditional for if the user wins or losses
     if (score === randomNumber) {
-      alert('Congratulations! You won the game!');
-
-      wins += 1;
-
-      // reset score to 0 and new random number
-      initializeGame();
+      wins++;
+      setTimeout(function() {
+        alert('Congratulations! You won the game!');
+        // reset score to 0 and new random number
+        initializeGame();
+      }, 200);
 
       $('#player-record').html(
         '<p class="player-record-end-game">You won!</p>' +
@@ -103,12 +107,12 @@ $(document).ready(function() {
       // set the data-crystal-value to the new crystal scores
       setCrystalValues(crystalScores);
     } else if (score > randomNumber) {
-      alert('You lost the game!');
-
-      losses += 1;
-
-      // reset score to 0 and new random number
-      initializeGame();
+      losses++;
+      setTimeout(function() {
+        alert('You lost the game!');
+        // reset score to 0 and new random number
+        initializeGame();
+      }, 200);
 
       $('#player-record').html(
         '<p class="player-record-end-game">You lost!</p>' +

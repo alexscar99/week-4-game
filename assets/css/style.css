@@ -50,20 +50,13 @@ h3 {
   margin: 45px 100px 0px 100px;
   text-align: center;
   float: left;
-}
-
-#random-number {
-  background: #9ca39f;
+  background: #747c78;
 }
 
 #random-number p {
   margin-top: -5px;
   font-size: 80px;
   margin-right: 10px;
-}
-
-#player-record {
-  background: #4d5650;
 }
 
 #player-record p {
@@ -85,8 +78,4 @@ h3 {
   background: black;
   margin: 45px 75px 25px 120px;
   border: 4px solid #747c78;
-}
-
-#current-score {
-  background: #747c78;
 }

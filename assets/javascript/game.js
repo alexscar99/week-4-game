@@ -3,6 +3,22 @@ $(document).ready(function() {
 
   var score = 0;
 
+  var wins = 0;
+
+  var losses = 0;
+
+  var crystals = $('#crystals');
+
+  var crystalScores = [];
+
+  // create array of the four crystal images
+  var crystalImgSrc = [
+    'assets/images/crystal1.png',
+    'assets/images/crystal2.png',
+    'assets/images/crystal3.png',
+    'assets/images/crystal4.png'
+  ];
+
   // function to generate random number and place it in #random-number, set score to 0 and place it in #score
   var initializeGame = function() {
     randomNumber = Math.floor(Math.random() * 102) + 19;
@@ -14,18 +30,10 @@ $(document).ready(function() {
 
   initializeGame();
 
-  var wins = 0;
-
-  var losses = 0;
-
   // create paragraphs for wins and losses
   $('#player-record').html(
     '<p>Wins: ' + wins + '</p>' + '<p>Losses: ' + losses + '</p>'
   );
-
-  var crystals = $('#crystals');
-
-  var crystalScores = [];
 
   // function to add 4 random numbers between 1-12 (crystal scores) to empty array
   var createCrystalScores = function(array) {
@@ -43,14 +51,6 @@ $(document).ready(function() {
   };
 
   createCrystalScores(crystalScores);
-
-  // create array of the four crystal images
-  var crystalImgSrc = [
-    'assets/images/crystal1.png',
-    'assets/images/crystal2.png',
-    'assets/images/crystal3.png',
-    'assets/images/crystal4.png'
-  ];
 
   // create 4 img elements then add class, src from img src array, data-crystal-value with random score number, alt tags, append to #crystals
   for (var i = 0; i < crystalScores.length; i++) {

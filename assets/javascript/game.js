@@ -1,8 +1,18 @@
 $(document).ready(function() {
-  // store random number between 19-120
-  var randomNumber = Math.floor(Math.random() * 102) + 19;
+  var randomNumber = 0;
 
-  $('#random-number').html('<p>' + randomNumber + '</p>');
+  var score = 0;
+
+  // function to generate random number and place it in #random-number, set score to 0 and place it in #score
+  var initializeGame = function() {
+    randomNumber = Math.floor(Math.random() * 102) + 19;
+    $('#random-number').html('<p>' + randomNumber + '</p>');
+
+    score = 0;
+    $('#score').text(score);
+  };
+
+  initializeGame();
 
   var wins = 0;
 
@@ -15,16 +25,24 @@ $(document).ready(function() {
 
   var crystals = $('#crystals');
 
-  var score = 0;
-
-  $('#score').text(score);
-
   var crystalScores = [];
 
-  // create loop to add 4 random numbers between 1-12 to empty array
-  for (i = 0; i < 4; i++) {
-    crystalScores.push(Math.floor(Math.random() * 12) + 1);
-  }
+  // function to add 4 random numbers between 1-12 (crystal scores) to empty array
+  var createCrystalScores = function(array) {
+    array.length = 0;
+    for (i = 0; i < 4; i++) {
+      array.push(Math.floor(Math.random() * 12) + 1);
+    }
+  };
+
+  // function to set the data-crystal-value to the new crystal scores
+  var setCrystalValues = function(array) {
+    $('.crystal-img').each(function(i) {
+      $(this).attr('data-crystal-value', array[i]);
+    });
+  };
+
+  createCrystalScores(crystalScores);
 
   // create array of the four crystal images
   var crystalImgSrc = [
@@ -34,7 +52,7 @@ $(document).ready(function() {
     'assets/images/crystal4.png'
   ];
 
-  // loop through and create 4 imgs with same class, src from img src array defined above, add data-crystal-value attr that takes the value of the random score number from the crystal scores array, add alt tag to all imgs, and append to the element with id of crystals
+  // create 4 img elements then add class, src from img src array, data-crystal-value with random score number, alt tags, append to #crystals
   for (var i = 0; i < crystalScores.length; i++) {
     var crystalImage = $('<img>');
 
@@ -66,14 +84,8 @@ $(document).ready(function() {
 
       wins += 1;
 
-      // reset score to 0 and new random number between 19-120
-      randomNumber = Math.floor(Math.random() * 102) + 19;
-
-      score = 0;
-
-      $('#random-number').html('<p>' + randomNumber + '</p>');
-
-      $('#score').text(score);
+      // reset score to 0 and new random number
+      initializeGame();
 
       $('#player-record').html(
         '<p class="player-record-end-game">You won!</p>' +
@@ -85,30 +97,18 @@ $(document).ready(function() {
           '</p>'
       );
 
-      // reset crystal scores with 4 new random numbers between 1-12
-      crystalScores = [];
+      // reset crystal scores
+      createCrystalScores(crystalScores);
 
-      for (var i = 0; i < 4; i++) {
-        crystalScores.push(Math.floor(Math.random() * 12) + 1);
-      }
-
-      // for loop was replacing last value of crystal scores array into all 4 instead of setting each one. Had to use a .each function and `this` to populate it properly
-      $('.crystal-img').each(function(i) {
-        $(this).attr('data-crystal-value', crystalScores[i]);
-      });
+      // set the data-crystal-value to the new crystal scores
+      setCrystalValues(crystalScores);
     } else if (score > randomNumber) {
       alert('You lost the game!');
 
       losses += 1;
 
-      // reset score to 0 and new random number between 19-120
-      score = 0;
-
-      randomNumber = Math.floor(Math.random() * 102) + 19;
-
-      $('#random-number').html('<p>' + randomNumber + '</p>');
-
-      $('#score').text(score);
+      // reset score to 0 and new random number
+      initializeGame();
 
       $('#player-record').html(
         '<p class="player-record-end-game">You lost!</p>' +
@@ -120,17 +120,11 @@ $(document).ready(function() {
           '</p>'
       );
 
-      // reset crystal scores with 4 new random numbers between 1-12
-      crystalScores = [];
+      // reset crystal scores
+      createCrystalScores(crystalScores);
 
-      for (i = 0; i < 4; i++) {
-        crystalScores.push(Math.floor(Math.random() * 12) + 1);
-      }
-
-      // for loop was replacing last value of crystal scores array into all 4 instead of setting each one. Had to use a .each function and `this` to populate it properly
-      $('.crystal-img').each(function(i) {
-        $(this).attr('data-crystal-value', crystalScores[i]);
-      });
+      // set the data-crystal-value to the new crystal scores
+      setCrystalValues(crystalScores);
     }
   });
 });

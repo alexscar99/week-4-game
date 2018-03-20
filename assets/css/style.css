@@ -23,6 +23,7 @@ h2 {
 h3 {
   font-size: 55px;
   margin-top: -10px;
+  padding: 32px;
 }
 
 #instructions,
@@ -35,8 +36,8 @@ h3 {
 #instructions {
   background: #282d2a;
   font-size: 20px;
-  line-height: 17px;
-  padding: 18px;
+  line-height: 40px;
+  padding: 30px;
   height: 200px;
 }
 
@@ -54,7 +55,6 @@ h3 {
 }
 
 #random-number p {
-  margin-top: -5px;
   font-size: 80px;
   margin-right: 10px;
 }
@@ -64,7 +64,7 @@ h3 {
 }
 
 #player-record p.player-record-end-game {
-  margin: -5px auto 20px auto;
+  margin: 0px 0px 15px 0;
 }
 
 #crystals {

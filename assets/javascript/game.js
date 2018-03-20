@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // declare global variables with default values
   var randomNumber = 0;
 
   var score = 0;
@@ -11,7 +12,6 @@ $(document).ready(function() {
 
   var crystalScores = [];
 
-  // create array of the four crystal images
   var crystalImgSrc = [
     'assets/images/crystal1.png',
     'assets/images/crystal2.png',
@@ -68,7 +68,7 @@ $(document).ready(function() {
   }
 
   crystals.on('click', '.crystal-img', function() {
-    // store the data crystal value string
+    // store the data crystal value as a string
     var crystalValue = $(this).attr('data-crystal-value');
 
     // turn the string into a number for the score
@@ -77,10 +77,6 @@ $(document).ready(function() {
     score += crystalValue;
 
     $('#score').text(score);
-
-    if (score === randomNumber || score > randomNumber) {
-      crystalValue = 0;
-    }
 
     // set conditional for if the user wins or losses
     if (score === randomNumber) {

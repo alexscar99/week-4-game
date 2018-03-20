@@ -85,7 +85,7 @@ $(document).ready(function() {
         alert('Congratulations! You won the game!');
         // reset score to 0 and new random number
         initializeGame();
-      }, 200);
+      }, 100);
 
       $('#player-record').html(
         '<p class="player-record-end-game">You won!</p>' +
@@ -108,7 +108,7 @@ $(document).ready(function() {
         alert('You lost the game!');
         // reset score to 0 and new random number
         initializeGame();
-      }, 200);
+      }, 100);
 
       $('#player-record').html(
         '<p class="player-record-end-game">You lost!</p>' +

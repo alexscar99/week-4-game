@@ -1,5 +1,9 @@
 body {
-  background-image: url(../images/cave-background.jpg);
+  background: url(../images/cave-background.jpg) no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   color: white;
   margin: 60px;
   padding: 0 25px;
